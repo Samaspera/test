@@ -17,8 +17,8 @@ public class DeviceController {
 
     @PostMapping
     public boolean save(@RequestBody Device device) {
-        if(device.getUid() == null) {
-            device.setUid(1);
+        if(device.getType() == null) {
+            device.setType(1);
         }
         return service.save(device);
     }

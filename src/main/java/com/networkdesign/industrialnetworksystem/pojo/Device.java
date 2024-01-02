@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class Device {
     private Integer id;
     private String dName;
-    private Integer uid;
+    private Integer type;
 
     public Device() {
     }
@@ -14,7 +14,7 @@ public class Device {
     public Device(Integer id, String dName, Integer uid) {
         this.id = id;
         this.dName = dName;
-        this.uid = uid;
+        this.type = uid;
     }
 
     public Integer getId() {
@@ -33,12 +33,12 @@ public class Device {
         this.dName = dName;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Integer getType() {
+        return type;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Device {
         return "Device{" +
                 "id=" + id +
                 ", dName='" + dName + '\'' +
-                ", uid=" + uid +
+                ", uid=" + type +
                 '}';
     }
 }
