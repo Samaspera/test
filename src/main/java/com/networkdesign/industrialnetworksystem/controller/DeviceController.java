@@ -23,11 +23,8 @@ public class DeviceController {
     public DeviceService service;
 
     @PostMapping
-    public boolean save(@RequestBody Device device) {
-        if(device.getType() == null) {
-            device.setType(1);
-        }
-        return service.save(device);
+    public Integer save(@RequestBody Device device) {
+        return service.new_save(device);
     }
 
     @GetMapping ("/page")
@@ -48,6 +45,11 @@ public class DeviceController {
     @DeleteMapping("/{id}")
     public Integer delete(@PathVariable Integer id) {
         return service.deleteById(id);
+    }
+
+    @PostMapping("del/batch")
+    public boolean delBatchById(@RequestBody List<Integer> ids){
+        return service.removeByIds(ids);
     }
     /**
      * excel数据导出

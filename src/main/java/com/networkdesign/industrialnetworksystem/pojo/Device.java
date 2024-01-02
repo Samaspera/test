@@ -11,10 +11,10 @@ public class Device {
     public Device() {
     }
 
-    public Device(Integer id, String dName, Integer uid) {
+    public Device(Integer id, String dName, Integer type) {
         this.id = id;
         this.dName = dName;
-        this.type = uid;
+        this.type =type;
     }
 
     public Integer getId() {
@@ -46,7 +46,7 @@ public class Device {
         return "Device{" +
                 "id=" + id +
                 ", dName='" + dName + '\'' +
-                ", uid=" + type +
+                ", type=" + type +
                 '}';
     }
 }
