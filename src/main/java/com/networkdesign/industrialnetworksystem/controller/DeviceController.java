@@ -38,4 +38,34 @@ public class DeviceController {
         }
         return service.page(page, wrapper);
     }
+    @DeleteMapping("/{id}")
+    public Integer delete(@PathVariable Integer id) {
+        return service.deleteById(id);
+    }
+    /**
+     * excel数据导出
+     *
+     */
+    @GetMapping("/export")
+    public void export(HttpServletResponse response)throws Exception{
+        List<Device> list=service.list();
+        //写入内存
+        ExcelWriter writer = ExcelUtil.getWriter(true);
+
+        //起别名
+        writer.addHeaderAlias("dname","设备名");
+        writer.addHeaderAlias("type","数据类型");
+        //一次性写出list内对象到excel,使用默认样式，强制输出标题
+        writer.write(list,true);
+        //文件名
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheetml.sheet;charset-utf-8");
+        String filename= URLEncoder.encode("设备信息","UTF-8");
+        response.setHeader("Content-Disposition","attachment;filename="+filename+".xlsx");
+        //写出
+        ServletOutputStream out =response.getOutputStream();
+        writer.flush(out,true);
+        out.close();
+        writer.close();
+
+    }
 }

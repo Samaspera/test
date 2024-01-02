@@ -9,4 +9,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> implements DeviceService {
+    @Autowired
+    private DeviceMapper deviceMapper;
+    public Integer new_save(Device device){
+        if(device.getType()==null) {
+            device.setType(1);
+            return deviceMapper.insert(device);
+        }else{
+            return deviceMapper.update(device);
+        }
+
+    }
+    public Integer deleteById(Integer id){
+        return deviceMapper.deleteById(id);
+    }
 }
