@@ -6,13 +6,15 @@ package com.networkdesign.industrialnetworksystem.controller.dto;
 public class UserDTO {
     private String username;
     private String password;
+    private String token;
 
     public UserDTO() {
     }
 
-    public UserDTO(String username, String password) {
+    public UserDTO(String username, String password, String token) {
         this.username = username;
         this.password = password;
+        this.token = token;
     }
 
     public String getUsername() {
@@ -25,6 +27,14 @@ public class UserDTO {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void setPassword(String password) {
