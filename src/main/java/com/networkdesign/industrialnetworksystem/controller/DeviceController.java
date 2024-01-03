@@ -31,6 +31,7 @@ public class DeviceController {
     public IPage<Device> findPage(@RequestParam Integer pageNum,
                                   @RequestParam Integer pageSize,
                                   @RequestParam(defaultValue = "") Integer id,
+                                  @RequestParam(defaultValue = "") Integer dType,
                                   @RequestParam(defaultValue = "") String dName) {
         IPage<Device> page = new Page<>(pageNum, pageSize);
         QueryWrapper<Device> wrapper = new QueryWrapper<>();
