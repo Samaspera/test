@@ -1,8 +1,6 @@
 package com.networkdesign.industrialnetworksystem.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.networkdesign.industrialnetworksystem.common.Result;
 import com.networkdesign.industrialnetworksystem.controller.dto.UserDTO;
 import com.networkdesign.industrialnetworksystem.controller.dto.UserRDTO;
 import com.networkdesign.industrialnetworksystem.pojo.User;
