@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface DeviceMapper extends BaseMapper<Device> {
-    @Update("update t_device set d_name=#{dName}, type=#{type} where id=#{id} ")
+    @Update("update t_device set d_name=#{dName}, type=#{type}, address=#{address} where id=#{id} ")
     Integer update(Device device);
 
     @Delete("delete from t_device where id=#{id}")

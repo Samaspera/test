@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class random {
     public static List<Double> getRandom() {
-        Random random = new Random(123);
+        Random random = new Random();
         // 正态分布的均值和标准差
         double mean = 25.0;
         double standardDeviation = 2.0;
