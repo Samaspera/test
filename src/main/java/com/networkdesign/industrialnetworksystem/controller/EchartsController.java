@@ -5,6 +5,7 @@ import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.networkdesign.industrialnetworksystem.common.Result;
 import com.networkdesign.industrialnetworksystem.pojo.StoreData;
+import com.networkdesign.industrialnetworksystem.service.AllFileService;
 import com.networkdesign.industrialnetworksystem.service.DeviceService;
 import com.networkdesign.industrialnetworksystem.service.impl.random;
 import org.apache.catalina.Store;
@@ -43,6 +44,10 @@ public class EchartsController {
         for(Double douNum:data){
             storeList.add(new StoreData(douNum));
         }
+        if(storeList.size()>=1000){
+            AllFileService.writeDeviceStatistic(storeList);
+            storeList.clear();
+        }
         return Result.success(combinedDoubleList);
     }
 
@@ -58,7 +63,6 @@ public class EchartsController {
         //起别名
         writer.addHeaderAlias("time","时间");
         writer.addHeaderAlias("data","设备数据");
-
         //一次性写出list内对象到excel,使用默认样式，强制输出标题
         writer.write(storeList, true);
         //文件名
