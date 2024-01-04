@@ -7,6 +7,9 @@ public class Device {
     private Integer id;
     private String dName;
     private Integer type;
+    private Integer address;
+    private Integer isOnline;
+    private Integer isWarning;
 
     public Device() {
     }
@@ -15,6 +18,15 @@ public class Device {
         this.id = id;
         this.dName = dName;
         this.type =type;
+    }
+
+    public Device(Integer id, String dName, Integer type, Integer address, Integer isOnline, Integer isWarning) {
+        this.id = id;
+        this.dName = dName;
+        this.type = type;
+        this.address = address;
+        this.isOnline = isOnline;
+        this.isWarning = isWarning;
     }
 
     public Integer getId() {
@@ -41,12 +53,39 @@ public class Device {
         this.type = type;
     }
 
+    public Integer getAddress() {
+        return address;
+    }
+
+    public void setAddress(Integer address) {
+        this.address = address;
+    }
+
+    public Integer getIsOnline() {
+        return isOnline;
+    }
+
+    public void setIsOnline(Integer isOnline) {
+        this.isOnline = isOnline;
+    }
+
+    public Integer getIsWarning() {
+        return isWarning;
+    }
+
+    public void setIsWarning(Integer isWarning) {
+        this.isWarning = isWarning;
+    }
+
     @Override
     public String toString() {
         return "Device{" +
                 "id=" + id +
                 ", dName='" + dName + '\'' +
                 ", type=" + type +
+                ", address=" + address +
+                ", isOnline=" + isOnline +
+                ", isWarning=" + isWarning +
                 '}';
     }
 }
