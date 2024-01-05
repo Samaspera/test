@@ -7,6 +7,7 @@ import com.networkdesign.industrialnetworksystem.pojo.Device;
 import com.networkdesign.industrialnetworksystem.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -30,11 +31,15 @@ public class DeviceController {
         IPage<Device> page = new Page<>(pageNum, pageSize);
         QueryWrapper<Device> wrapper = new QueryWrapper<>();
         if(id != null) {
-            wrapper.like("id", id);
+            wrapper.eq("id", id);
         }
         if(!"".equals(dName)) {
             wrapper.like("d_name", dName);
         }
+
+        //随机地去更改数据库里的设备的是否警告状态，模拟，发来的警告。
+        service.updateWarnings();
+
         return service.page(page, wrapper);
     }
     @DeleteMapping("/{id}")

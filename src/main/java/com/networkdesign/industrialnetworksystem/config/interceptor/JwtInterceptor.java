@@ -10,7 +10,6 @@ import com.networkdesign.industrialnetworksystem.exception.ServiceException;
 import com.networkdesign.industrialnetworksystem.pojo.User;
 import com.networkdesign.industrialnetworksystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 

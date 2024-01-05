@@ -3,9 +3,9 @@ package com.networkdesign.industrialnetworksystem.pojo;
 import java.time.LocalDateTime;
 
 public class StoreData {
-    private Double data ;
-    private LocalDateTime time;
 
+    private LocalDateTime time;
+    private Double data ;
     public StoreData(Double data){
         this.data=data;
         this.time= LocalDateTime.now();
@@ -25,5 +25,13 @@ public class StoreData {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "StoreData{" +
+                "data=" + data +
+                ", time=" + time +
+                '}';
     }
 }

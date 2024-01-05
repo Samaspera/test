@@ -7,6 +7,9 @@ import com.networkdesign.industrialnetworksystem.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Random;
+
 @Service
 public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> implements DeviceService {
     @Autowired
@@ -23,5 +26,18 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         return deviceMapper.deleteById(id);
     }
 
-
+    @Override
+    public Integer updateWarnings() {
+        List<Device> deviceList=this.list();
+        Random random=new Random();
+        Device updatingDevice=deviceList.get(random.nextInt(deviceList.size()));
+        updatingDevice.setIsWarning(updatingDevice.getIsWarning()^1);
+        return deviceMapper.updateWarning(updatingDevice);
     }
+    @Override
+    public Device selectById(Integer id){
+        return deviceMapper.selectById(id);
+    }
+
+
+}

@@ -8,22 +8,23 @@ import com.networkdesign.industrialnetworksystem.pojo.StoreData;
 import com.networkdesign.industrialnetworksystem.service.AllFileService;
 import com.networkdesign.industrialnetworksystem.service.DeviceService;
 import com.networkdesign.industrialnetworksystem.service.impl.random;
-import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/echarts")
 public class EchartsController {
+    @Autowired
+    DeviceService deviceService;
     protected List<StoreData> storeList = new ArrayList<>();
 
     @GetMapping("/example")
@@ -34,8 +35,8 @@ public class EchartsController {
         return Result.success(map);
     }
 
-    @GetMapping("/statistic")
-    public Result statistic() {
+    @GetMapping("/statistic/{id}")
+    public Result statistic(@PathVariable Integer id) {
         List<Double> data = random.getRandom();
 
         // 创建一个新的 ArrayList，并将已存在的 Double List 加入其中
@@ -44,9 +45,19 @@ public class EchartsController {
         for(Double douNum:data){
             storeList.add(new StoreData(douNum));
         }
-        if(storeList.size()>=1000){
-            AllFileService.writeDeviceStatistic(storeList);
+        if(storeList.size()>9){
+            String filePath="../../log/statistic/output_all.xlsx";
+
+            if(id != null) {
+                filePath="../../log/statistic/"+deviceService.selectById(id).getdName()+".xlsx";
+            }
+
+            List<StoreData> ExistedData = AllFileService.readExcelData(filePath);
+
+            System.out.println(ExistedData);
+            ExistedData.addAll(storeList);
             storeList.clear();
+            AllFileService.writeExcel(filePath,ExistedData);
         }
         return Result.success(combinedDoubleList);
     }
