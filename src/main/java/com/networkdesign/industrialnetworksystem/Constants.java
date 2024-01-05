@@ -12,4 +12,9 @@ public class Constants {
     public static final String CODE_401 = "401";  //权限不足
     public static final String CODE_400 = "400";  //参数不足
     public static final String CODE_600 = "600";  //其他业务异常
+
+    public static final Integer BEIJING = 1;
+    public static final Integer SHENZHEN = 4;
+    public static final Integer GUANGZHOU = 3;
+    public static final Integer SHANGHAI = 2;
 }
