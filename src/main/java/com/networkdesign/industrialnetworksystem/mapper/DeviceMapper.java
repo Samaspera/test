@@ -13,6 +13,8 @@ public interface DeviceMapper extends BaseMapper<Device> {
     @Update("update t_device set d_name=#{dName}, type=#{type}, address=#{address} where id=#{id} ")
     Integer update(Device device);
 
+    @Update("update t_device set is_warning =#{isWarning} where id=#{id} ")
+    Integer updateWarning(Device device);
     @Delete("delete from t_device where id=#{id}")
     Integer deleteById(@Param("id") Integer id);
 }

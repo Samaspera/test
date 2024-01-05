@@ -23,5 +23,5 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         return deviceMapper.deleteById(id);
     }
 
-
+    public Integer updateWarning(Device device) {return deviceMapper.updateWarning(device);}
     }
