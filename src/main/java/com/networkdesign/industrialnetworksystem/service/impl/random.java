@@ -1,5 +1,6 @@
 package com.networkdesign.industrialnetworksystem.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +10,7 @@ public class random {
         Random random = new Random();
         // 正态分布的均值和标准差
         double mean = 25.0;
-        double standardDeviation = 2.0;
+        double standardDeviation = 4.0;
 
         // 生成100个符合正态分布的随机数并输出
         List<Double> data = new ArrayList<>();
