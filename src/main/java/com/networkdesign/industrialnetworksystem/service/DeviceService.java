@@ -8,5 +8,7 @@ public interface DeviceService extends IService<Device> {
 
     Integer deleteById(Integer id);
 
-    Integer updateWarning(Device device);
+    Integer updateWarnings();
+
+    Device selectById(Integer id);
 }

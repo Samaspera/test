@@ -1,7 +1,5 @@
 package com.networkdesign.industrialnetworksystem;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 public class Constants {
     //1温度
     //2湿度
