@@ -40,10 +40,6 @@ public class DeviceController {
         if(!"".equals(dName)) {
             wrapper.like("d_name", dName);
         }
-
-        //随机地去更改数据库里的设备的是否警告状态，模拟，发来的警告。
-        service.updateWarnings();
-
         return service.page(page, wrapper);
     }
     @DeleteMapping("/{id}")

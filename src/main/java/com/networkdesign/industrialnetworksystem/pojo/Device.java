@@ -21,7 +21,9 @@ public class Device {
     private Integer address;
     private Integer isOnline;
     private Integer isWarning;
-
+    public String getdName(){
+        return dName;
+    }
     @Override
     public String toString() {
         return "Device{" +

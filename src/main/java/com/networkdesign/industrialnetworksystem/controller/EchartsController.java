@@ -38,11 +38,12 @@ public class EchartsController {
     @GetMapping("/statistic/{id}")
     public Result statistic(@PathVariable Integer id) {
         List<Double> data = random.getRandom();
-
         // 创建一个新的 ArrayList，并将已存在的 Double List 加入其中
         List<Double> combinedDoubleList = CollUtil.newArrayList();
+
         combinedDoubleList.addAll(data);
         for(Double douNum:data){
+            if(douNum>=30.0) deviceService.updateWarnings(id);
             storeList.add(new StoreData(douNum));
         }
         if(storeList.size()>9){
@@ -59,7 +60,7 @@ public class EchartsController {
             storeList.clear();
             AllFileService.writeExcel(filePath,ExistedData);
         }
-        return Result.success(combinedDoubleList);
+        return Result.success(data);
     }
 
     /**
