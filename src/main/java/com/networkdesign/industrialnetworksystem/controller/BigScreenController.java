@@ -90,4 +90,18 @@ public class BigScreenController {
         }
         return res;
     }
+
+    @GetMapping("/communityData")
+    public CommunityData getCommunityData() {
+        List<Device> list = service.list();
+        Integer deviceData = 0, communityData = 0;
+        Set<Integer> set = new HashSet<>();
+        for (Device device : list) {
+            set.add(device.getAddress());
+        }
+        deviceData = list.size();
+        communityData = set.size();
+
+        return new CommunityData(deviceData, communityData);
+    }
 }
