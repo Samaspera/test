@@ -23,16 +23,6 @@ public class HelloController {
         return nickname + "hello world";
     }
 
-//    @RequestMapping("/user")
-//    public void user() {
-//        QueryWrapper<User> wrapper = new QueryWrapper<>();
-//        wrapper.eq("admin", )
-//        List<User> list = service.list();
-//        for(User l : list) {
-//            System.out.println(l);
-//        }
-//    }
-
     @RequestMapping("/login")
     public User login(@RequestBody User user){
         QueryWrapper<User> wrapper = new QueryWrapper<>();

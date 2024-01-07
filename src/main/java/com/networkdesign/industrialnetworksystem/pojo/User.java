@@ -73,6 +73,6 @@ public class User {
     }
 
     public String LogString(){
-        return "用户 "+ username;
+        return "user "+ username;
     }
 }

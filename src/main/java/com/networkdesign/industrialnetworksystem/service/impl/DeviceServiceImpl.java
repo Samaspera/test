@@ -22,16 +22,16 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
     public Integer new_save(Device device){
         if(device.getId()==null) {
             device.setId(0);
-            logMapper.insert(new Log(0, LocalDateTime.now(), "增加 "+device.LogString(),true));
+            logMapper.insert(new Log(0, LocalDateTime.now(), "add "+device.LogString(),true));
             return deviceMapper.insert(device);
         }else{
             //插入日志
-            logMapper.insert(new Log(0, LocalDateTime.now(), "修改 "+this.selectById(device.getId()).LogString()+" 为"+device.LogString(),true));            return deviceMapper.update(device);
+            logMapper.insert(new Log(0, LocalDateTime.now(), "update "+this.selectById(device.getId()).LogString()+" 为"+device.LogString(),true));            return deviceMapper.update(device);
         }
     }
     public Integer deleteById(Integer id){
         //插入日志
-        logMapper.insert(new Log(0, LocalDateTime.now(), "删除 "+ this.selectById(id).LogString(),true));
+        logMapper.insert(new Log(0, LocalDateTime.now(), "delete "+ this.selectById(id).LogString(),true));
         return deviceMapper.deleteById(id);
     }
 
@@ -42,7 +42,7 @@ public class DeviceServiceImpl extends ServiceImpl<DeviceMapper, Device> impleme
         Device updatingDevice=deviceList.get(random.nextInt(deviceList.size()));
         updatingDevice.setIsWarning(updatingDevice.getIsWarning()^1);
         //插入日志
-        logMapper.insert(new Log(0, LocalDateTime.now(), "警告 "+ updatingDevice.LogString(),true));
+        logMapper.insert(new Log(0, LocalDateTime.now(), "warning "+ updatingDevice.LogString(),true));
         return deviceMapper.updateWarning(updatingDevice);
     }
     @Override

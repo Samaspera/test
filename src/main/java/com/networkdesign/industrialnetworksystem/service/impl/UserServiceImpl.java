@@ -34,13 +34,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 BeanUtils.copyProperties(one, userDTO);
                 String token = TokenUtils.genToken(one.getId().toString(), one.getPassword());
                 userDTO.setToken(token);
-                logMapper.insert(new Log(0, LocalDateTime.now(),"用户"+ userDTO.getUsername()+"登录",false));
+                logMapper.insert(new Log(0, LocalDateTime.now(),"user"+ userDTO.getUsername()+"Login0",false));
                 return userDTO;
             } else {
                 throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new ServiceException(Constants.CODE_500, "系统错误");
         }
     }
@@ -53,13 +53,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         try {
             one = getOne(wrapper);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new ServiceException(Constants.CODE_500, "系统错误");
         }
         if(one == null) {
             one = new User();
             BeanUtils.copyProperties(userRDTO, one);
-            logMapper.insert(new Log(0, LocalDateTime.now(),"用户"+ userRDTO.getUsername()+"注册",false));
+            logMapper.insert(new Log(0, LocalDateTime.now(),"user"+ userRDTO.getUsername()+"register",false));
             save(one);
         } else {
             throw new ServiceException(Constants.CODE_600, "用户已存在");

@@ -54,7 +54,7 @@ public class DeviceController {
     @PostMapping("del/batch")
     public boolean delBatchById(@RequestBody List<Integer> ids){
         for(Integer id:ids){
-            logService.insert(new Log(0, LocalDateTime.now(),"删除 "+service.selectById(id).LogString(),true));
+            logService.insert(new Log(0, LocalDateTime.now(),"delete "+service.selectById(id).LogString(),true));
         }
         return service.removeByIds(ids);
     }
