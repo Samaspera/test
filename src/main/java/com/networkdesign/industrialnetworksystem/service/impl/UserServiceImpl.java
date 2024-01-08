@@ -34,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 BeanUtils.copyProperties(one, userDTO);
                 String token = TokenUtils.genToken(one.getId().toString(), one.getPassword());
                 userDTO.setToken(token);
-                logMapper.insert(new Log(0, LocalDateTime.now(),"user"+ userDTO.getUsername()+"Login0",false));
+                logMapper.insert(new Log(0, LocalDateTime.now(),"user"+ userDTO.getUsername()+"Login",false));
                 return userDTO;
             } else {
                 throw new ServiceException(Constants.CODE_600, "用户名或密码错误");
