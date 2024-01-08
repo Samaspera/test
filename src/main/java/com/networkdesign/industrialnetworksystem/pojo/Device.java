@@ -33,6 +33,9 @@ public class Device {
                 ", isWarning=" + isWarning +
                 '}';
     }
+    public String getdName(){
+        return dName;
+    }
     public String LogString(){
         //String [] types =new String[] {"温度型设备","湿度型设备","光照型设备"} ;
         //String [] addresses =new String[] {"北京","上海","广州","深圳"};

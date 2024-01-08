@@ -4,6 +4,8 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.networkdesign.industrialnetworksystem.common.Result;
+import com.networkdesign.industrialnetworksystem.controller.dto.DeviceExport;
+import com.networkdesign.industrialnetworksystem.pojo.Device;
 import com.networkdesign.industrialnetworksystem.pojo.StoreData;
 import com.networkdesign.industrialnetworksystem.service.AllFileService;
 import com.networkdesign.industrialnetworksystem.service.DeviceService;
@@ -67,15 +69,17 @@ public class EchartsController {
      */
     @GetMapping("/export")
     public void export(HttpServletResponse response) throws Exception {
-        //List<Device> list=deservice.list();
+        List<DeviceExport> deviceExports= DeviceExport.ListExports(deviceService.list());
         //写入内存
         ExcelWriter writer = ExcelUtil.getWriter(true);
-
         //起别名
-        writer.addHeaderAlias("time","时间");
-        writer.addHeaderAlias("data","设备数据");
+        writer.addHeaderAlias("dName","设备名");
+        writer.addHeaderAlias("isOnline","在线状态");
+        writer.addHeaderAlias("isWarning","报警状态");
+        writer.addHeaderAlias("address","所在城市");
+        writer.addHeaderAlias("type","类型");
         //一次性写出list内对象到excel,使用默认样式，强制输出标题
-        writer.write(storeList, true);
+        writer.write(deviceExports, true);
         //文件名
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheetml.sheet;charset-utf-8");
         String filename = URLEncoder.encode("设备数据", "UTF-8");
@@ -85,7 +89,6 @@ public class EchartsController {
         writer.flush(out, true);
         out.close();
         writer.close();
-
     }
 
 }
